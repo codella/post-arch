@@ -1,0 +1,9 @@
+name: Check installer
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n install.sh && bash tests/check.sh
+      - run: shellcheck install.sh tests/check.sh
